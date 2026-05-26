@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEB MAKERS | Ultra Luxury Portfolio</title>
+    <meta name="description" content="Ultra-luxurious portfolio website for WEB MAKERS. Bespoke digital experiences.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Supabase JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cursor"></div>
+    
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-premium">
+            <button id="close-modal" class="close-btn">&times;</button>
+            <h2 class="serif-title" id="auth-title">Enter the Elite</h2>
+            <p class="modal-subtitle">Log in or sign up to leave your mark.</p>
+            
+            <form id="auth-form" class="auth-form">
+                <input type="email" id="auth-email" placeholder="Your Email Address" required class="luxury-input">
+                <input type="password" id="auth-password" placeholder="Your Password" required class="luxury-input">
+                <button type="submit" id="auth-submit" class="gold-btn w-full">Authenticate</button>
+            </form>
+            <div class="auth-switch">
+                <span id="auth-toggle-text">New here?</span> 
+                <button id="auth-toggle-btn" class="text-link">Sign Up instead</button>
+            </div>
+            <p id="auth-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <header class="navbar">
+        <div class="logo serif-title">WEB MAKERS</div>
+        <nav class="nav-desktop">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#reviews">Praise</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions">
+            <button id="nav-login-btn" class="gold-btn-outline">Log In / Sign Up</button>
+            <button id="nav-logout-btn" class="gold-btn-outline hidden">Log Out</button>
+            <button id="menu-toggle" class="menu-toggle-btn">&#9776;</button>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="mobile-menu-overlay hidden">
+        <div class="mobile-menu-content glass-premium">
+            <button id="close-menu" class="close-btn">&times;</button>
+            <ul class="mobile-nav-links">
+                <li><a href="#home" class="mobile-link">Home</a></li>
+                <li><a href="#about" class="mobile-link">About</a></li>
+                <li><a href="#services" class="mobile-link">Services</a></li>
+                <li><a href="#reviews" class="mobile-link">Praise</a></li>
+                <li><a href="#contact" class="mobile-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title serif-title">Architects of <br><span class="gold-gradient-text">Digital Prestige</span></h1>
+                <p class="hero-subtitle">Bespoke web design tailored exclusively for visionary businesses and premium freelancers.</p>
+                <a href="#contact" class="gold-btn">Commission a Project</a>
+            </div>
+            <div class="background-glow"></div>
+            <div class="background-glow glow-2"></div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content glass-premium text-center">
+                    <h2 class="section-title serif-title">The Mind Behind the Craft</h2>
+                    <p class="bio">
+                        I am <span class="gold-text">Shahid Adnan</span>, a 17-year-old developer dedicated to engineering immersive, high-end digital experiences. 
+                    </p>
+                    <p class="bio">
+                        My philosophy revolves around creating neurologically calming, safe, yet profoundly striking interfaces. At WEB MAKERS, we don't just build websites; we craft digital legacies that exude trust and absolute luxury.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <h2 class="section-title serif-title text-center">Bespoke Offerings</h2>
+                <div class="services-grid">
+                    <div class="service-card glass-premium">
+                        <h3 class="serif-title">Corporate Elegance</h3>
+                        <p>Enterprise-grade web solutions designed to project authority, scale effortlessly, and convert premium clientele.</p>
+                    </div>
+                    <div class="service-card glass-premium">
+                        <h3 class="serif-title">Freelance Eminence</h3>
+                        <p>Personalized, high-end portfolios that elevate your personal brand and demand attention in a crowded market.</p>
+                    </div>
+                    <div class="service-card glass-premium">
+                        <h3 class="serif-title">Sensory UI/UX</h3>
+                        <p>Interfaces meticulously designed to be neurologically calming, ensuring a flawless and psychologically safe user journey.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews / Praise Section -->
+        <section id="reviews" class="reviews-section">
+            <div class="container">
+                <h2 class="section-title serif-title text-center">Client Praise</h2>
+                
+                <!-- Review Submission Form (Visible only to logged in users) -->
+                <div id="review-submission-area" class="review-submit-container glass-premium hidden">
+                    <h3 class="serif-title">Leave Your Mark</h3>
+                    <p class="sub-text">Describe your experience working with WEB MAKERS.</p>
+                    
+                    <form id="review-form" class="review-form">
+                        <textarea id="review-text" placeholder="Share your thoughts on the collaboration..." class="luxury-input textarea" required></textarea>
+                        
+                        <div class="tags-selection">
+                            <span class="tags-label">Experience Tags:</span>
+                            <div class="tags-group">
+                                <label class="tag-checkbox"><input type="checkbox" value="Visionary"> Visionary</label>
+                                <label class="tag-checkbox"><input type="checkbox" value="Flawless Execution"> Flawless Execution</label>
+                                <label class="tag-checkbox"><input type="checkbox" value="Calming Aesthetic"> Calming Aesthetic</label>
+                                <label class="tag-checkbox"><input type="checkbox" value="Highly Professional"> Highly Professional</label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="gold-btn">Submit Praise</button>
+                    </form>
+                </div>
+                <div id="login-prompt-reviews" class="login-prompt text-center">
+                    <p>Please log in to leave your praise.</p>
+                </div>
+
+                <!-- Display Reviews -->
+                <div id="reviews-list" class="reviews-grid">
+                    <!-- Reviews will be injected here dynamically. Placeholder for structure: -->
+                    <div class="review-card glass-premium placeholder-review">
+                        <p class="review-quote">"Loading experiences..."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="contact-box glass-premium text-center">
+                    <h2 class="section-title serif-title">Initiate a Dialogue</h2>
+                    <p class="contact-text">Ready to elevate your digital presence? We are currently accepting exclusive commissions.</p>
+                    
+                    <div class="contact-details">
+                        <a href="mailto:adnan232655@gmail.com" class="contact-link">adnan232655@gmail.com</a>
+                        <span class="divider">|</span>
+                        <a href="mailto:adnan232655@outlook.com" class="contact-link">adnan232655@outlook.com</a>
+                    </div>
+                    <div class="contact-phone mt-4">
+                        <a href="tel:+919363157158" class="gold-text text-xl">+91 9363157158</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 WEB MAKERS. Exclusively engineered by Shahid Adnan.</p>
+    </footer>
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="supabase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="reviews.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
